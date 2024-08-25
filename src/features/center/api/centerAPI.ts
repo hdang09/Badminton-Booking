@@ -31,9 +31,9 @@ export const createCenter = async (data: CenterReq): Promise<Center> => {
     }
 }
 
-export const updateCenter = async (id: number, data: CenterReq): Promise<Center> => {
+export const updateCenter = async (data: CenterReq): Promise<Center> => {
     try {
-        const response: Center = await httpRequest.put(`/badminton-booking/api/center/${id}`, data);
+        const response: Center = await httpRequest.put(`/badminton-booking/api/center`, data);
         return response;
     } catch (error: any) {
         throw new Error(error);
@@ -76,14 +76,14 @@ export const useCreateCenterMutation = (
 
 export const useUpdateCenterMutation = (
     handleFn: {
-        onError?: (error: unknown, variables: { id: number; data: CenterReq }, context: unknown) => void;
-        onSuccess?: (data: Center, variables: { id: number; data: CenterReq }, context: unknown) => void;
-        onMutate?: (variables: { id: number; data: CenterReq }) => Promise<Center>;
+        onError?: (error: unknown, variables: CenterReq, context: unknown) => void;
+        onSuccess?: (data: Center, variables: CenterReq, context: unknown) => void;
+        onMutate?: (variables: CenterReq) => Promise<Center>;
     },
     retry?: number,
 ) => {
     return useMutation({
-        mutationFn: ({ id, data }: { id: number; data: CenterReq }) => updateCenter(id, data),
+        mutationFn: (data: CenterReq) => updateCenter(data),
         onError: handleFn.onError,
         onSuccess: handleFn.onSuccess,
         onMutate: handleFn.onMutate,

@@ -1,3 +1,5 @@
-import ManageCourt from './ManageCourt';
+import CreateCourt from './CreateCourt';
+import ViewCourt from './ViewCourt';
+import UpdateCourt from './UpdateCourt';
 
-export { ManageCourt }
+export { CreateCourt, ViewCourt, UpdateCourt }

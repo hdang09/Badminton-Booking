@@ -67,7 +67,7 @@ export const resetAuthStore = () => {
   sessionStorage.removeItem("badminton-session");
 };
 
-export const numbertoPrice = (num: number): string => {
+export const numberToPrice = (num: number): string => {
   const numStr: string = num.toString();
 
   const formattedStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "đ";

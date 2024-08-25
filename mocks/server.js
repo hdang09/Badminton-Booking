@@ -95,17 +95,7 @@ export function makeServer({ environment = "test" } = {}) {
         try {
           let attrs = JSON.parse(request.requestBody);
 
-          let newCenter = schema.centers.create({
-            courtOwnerId: attrs.courtOwnerId,
-            createdBy: attrs.createdBy,
-            courtCenterName: attrs.courtCenterName,
-            address: attrs.address,
-            latitude: attrs.latitude,
-            longtitude: attrs.longtitude,
-            province: attrs.province,
-            district: attrs.district,
-            ward: attrs.ward,
-          });
+          let newCenter = schema.centers.create(attrs);
 
           return newCenter;
         } catch (error) {
@@ -113,11 +103,11 @@ export function makeServer({ environment = "test" } = {}) {
         }
       });
 
-      // PUT /badminton-booking/api/center/:centerId
-      this.put("/badminton-booking/api/center/:centerId", (schema, request) => {
+      // PUT /badminton-booking/api/center
+      this.put("/badminton-booking/api/center", (schema, request) => {
         try {
-          let centerId = request.params.centerId;
           let attrs = JSON.parse(request.requestBody);
+          let centerId = attrs.id;
           let center = schema.centers.find(centerId);
 
           if (center) {
@@ -139,23 +129,6 @@ export function makeServer({ environment = "test" } = {}) {
         }
       });
 
-      // GET /badminton-booking/api/court?centerId=3
-      this.get("/badminton-booking/api/court", (schema, request) => {
-        const centerId = request.queryParams.centerId;
-
-        if (!centerId) {
-          return new Response(400, {}, { message: "CenterId is required" });
-        }
-
-        const courts = schema.courts.where({ centerId: parseInt(centerId) });
-
-        if (courts.length === 0) {
-          return new Response(404, {}, { message: "No courts found for this center" });
-        }
-
-        return courts;
-      });
-
       // GET /badminton-booking/api/court?centerId=3?courtId=1
       this.get("/badminton-booking/api/court", (schema, request) => {
         const centerId = request.queryParams.centerId;
@@ -165,13 +138,56 @@ export function makeServer({ environment = "test" } = {}) {
           return new Response(400, {}, { message: "CenterId is required" });
         }
 
-        const courts = schema.courts.where({ centerId: parseInt(centerId), id: parseInt(courtId) });
+        let courts = schema.courts.where({
+          courtCenterId: parseInt(centerId),
+        });
+
+        if (courtId) {
+          courts = schema.courts.where({
+            id: parseInt(courtId),
+          });
+
+          if (courts.length === 0) {
+            return new Response(404, {}, { message: "No court found for this center" });
+          }
+
+          return courts.models[0].attrs;
+        }
 
         if (courts.length === 0) {
           return new Response(404, {}, { message: "No court found for this center" });
         }
 
-        return courts;
+        return courts.models;
+      });
+
+      // POST /badminton-booking/api/center
+      this.post("/badminton-booking/api/court", (schema, request) => {
+        try {
+          let attrs = JSON.parse(request.requestBody);
+
+          let newCourt = schema.courts.create(attrs);
+
+          return newCourt;
+        } catch (error) {
+          return new Response(500, {}, { message: "Internal Server Error" });
+        }
+      });
+
+      // PUT /badminton-booking/api/center
+      this.put("/badminton-booking/api/center", (schema, request) => {
+        try {
+          let attrs = JSON.parse(request.requestBody);
+          let court = schema.courts.find(attrs.id);
+
+          if (court) {
+            return court.update(attrs);
+          } else {
+            return new Response(404, {}, { message: "Court not found" });
+          }
+        } catch (error) {
+          return new Response(500, {}, { message: "Internal Server Error" });
+        }
       });
     },
   });

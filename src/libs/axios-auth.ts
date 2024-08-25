@@ -1,9 +1,5 @@
 import config from "@/config";
-import axios, { AxiosError, AxiosRequestConfig } from "axios";
-import Cookies from "js-cookie";
-import { IRefreshToken } from "@/features/auth/types";
-import { ErrorAuth } from "./error";
-import { useAuthStore } from "@/store/authStore";
+import axios, { AxiosRequestConfig } from "axios";
 
 const httpRequest = axios.create({
   baseURL: config.API.API_URL,

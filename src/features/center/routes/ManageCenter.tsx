@@ -22,7 +22,7 @@ export default function ManageCenter() {
         </Button>
       </Flex>
 
-      <Grid>
+      <Grid gutter={{ base: 5, xs: "md", md: "xl", xl: 50 }}>
         {centers?.map((center: Center) => (
           <Grid.Col span={{ base: 12, md: 6, lg: 3 }} key={center.id}>
             <CenterCard center={center} />

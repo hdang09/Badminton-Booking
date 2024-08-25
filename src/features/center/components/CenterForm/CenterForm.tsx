@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import { useCreateCenterMutation, useGetCenter, useUpdateCenterMutation } from "../../api";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
-import { CenterFormProps, CenterReq } from "../../types";
+import { CenterFormProps } from "../../types";
 
 function CenterForm() {
   const navigate = useNavigate();
@@ -67,14 +67,11 @@ function CenterForm() {
 
   const handleSubmit = (values: CenterFormProps) => {
     if (centerId) {
-      updateCenterMutation.mutate({
-        id: Number.parseInt(centerId ?? "0"),
-        data: values as CenterReq,
-      });
+      updateCenterMutation.mutate(values);
       return;
     }
 
-    createCenterMutation.mutate(values as CenterReq);
+    createCenterMutation.mutate(values);
   };
 
   return (
