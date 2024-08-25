@@ -1,6 +1,7 @@
 import { AppShell } from "@mantine/core";
 import { Outlet } from "react-router";
 import NavBar from "./components/NavBar";
+import Header from "./components/Header";
 
 export default function DefaultLayout() {
   return (
@@ -13,9 +14,9 @@ export default function DefaultLayout() {
       padding="md"
     >
       <AppShell.Header>
-        <div>Logo</div>
+        <Header />
       </AppShell.Header>
-      <AppShell.Navbar p="md">
+      <AppShell.Navbar p="md" style={{ justifyContent: "space-between" }}>
         <NavBar />
       </AppShell.Navbar>
 

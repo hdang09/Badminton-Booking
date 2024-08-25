@@ -6,9 +6,10 @@ import Logout from "@/features/auth/components/Logout";
 import { useAuthStore } from "@/store/authStore";
 
 const BUTTONS = [
-  { label: "Quản lý thống kê", icon: <VscDashboard size="24px" />, path: "/dashboard" },
+  { label: "Thống kê", icon: <VscDashboard size="24px" />, path: "/dashboard" },
   { label: "Quản lý trung tâm", icon: <MdPayment size="24px" />, path: "/dashboard/center" },
-  { label: "Quản lý thanh toán", icon: <MdSchedule size="24px" />, path: "/dashboard/court" },
+  { label: "Quản lý thanh toán", icon: <MdSchedule size="24px" />, path: "/dashboard/payment" },
+  { label: "Quản lý đặt sân", icon: <MdSchedule size="24px" />, path: "/dashboard/booking" },
 ];
 
 export default function NavBar() {
@@ -25,7 +26,7 @@ export default function NavBar() {
               key={button.label}
               fullWidth
               mih={40}
-              variant={pathname.includes(button.path) ? "gradient" : "subtle"}
+              variant={pathname === button.path ? "gradient" : "subtle"}
               onClick={() => navigate(button.path)}
               className="flex gap-x-3 justify-start active:transform-none text-base"
               leftSection={button.icon}
