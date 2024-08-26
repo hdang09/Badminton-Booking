@@ -189,6 +189,47 @@ export function makeServer({ environment = "test" } = {}) {
           return new Response(500, {}, { message: "Internal Server Error" });
         }
       });
+
+      // GET /badminton-booking/api/dashboard
+      this.get("/badminton-booking/api/dashboard", (schema, request) => {
+        try {
+          return {
+            reports: [
+              {
+                title: "Tổng trung tâm",
+                total: schema.centers.all().models.length,
+                isIncrease: true,
+                percentage: 25,
+              },
+              {
+                title: "Tổng sân",
+                total: schema.courts.all().models.length,
+                isIncrease: false,
+                percentage: 10,
+              },
+              {
+                title: "Tổng lịch đặt",
+                total: 10,
+                isIncrease: true,
+                percentage: 50,
+              },
+              {
+                title: "Tổng doanh thu",
+                total: 1600,
+                isIncrease: false,
+                percentage: 5,
+              },
+            ],
+            top5Centers: schema.centers.all().models.slice(0, 5),
+            countCourtByCenter: {
+              labels: ["Trung tâm Hà Nội", "Trung tâm Đà Nẵng", "Trung tâm Bình Dương"],
+              data: [5, 4, 8],
+            },
+          };
+        } catch (error) {
+          return new Response(401, {}, { message: "Unauthorized" });
+        }
+      });
     },
   });
 

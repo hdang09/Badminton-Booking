@@ -2,7 +2,7 @@ import Error from "@/components/Error";
 import ScrollToTop from "@/components/ScrollToTop";
 import { CreateCenter, ManageCenter, UpdateCenter, ViewCenter } from "@/features/center/routes";
 import { CreateCourt, UpdateCourt, ViewCourt } from "@/features/court/routes";
-import Dashboard from "@/features/owner/components/Dashboard";
+import { Dashboard } from "@/features/dashboard/routes";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import AuthProvider from "@/providers/AuthProvider";
 import { Navigate, Route, Routes } from "react-router-dom";
