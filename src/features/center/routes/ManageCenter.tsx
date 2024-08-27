@@ -4,6 +4,7 @@ import { IoIosAdd } from "react-icons/io";
 import { useGetListCategory } from "../api";
 import { Center } from "../types";
 import CenterCard from "../components/CenterCard";
+import { Link } from "react-router-dom";
 
 export default function ManageCenter() {
   const { data: centers } = useGetListCategory();
@@ -13,8 +14,8 @@ export default function ManageCenter() {
       <Flex justify="space-between" align="center" mb="xl">
         <Text className="text-2xl font-bold">Quản lý trung tâm</Text>
         <Button
-          component="a"
-          href="/dashboard/center/create"
+          component={Link}
+          to="/dashboard/center/create"
           radius="md"
           leftSection={<IoIosAdd size={24} />}
         >

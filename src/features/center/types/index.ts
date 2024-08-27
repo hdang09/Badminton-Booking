@@ -17,8 +17,8 @@ export type Center = {
 
 export type CenterReq = {
     id?: number;
-    courtOwnerId: number;
-    courtCenterName: string;
+    courtOwnerId?: number;
+    courtCenterName?: string;
     address: string;
     province: string;
     district: string;
@@ -29,8 +29,6 @@ export type CenterReq = {
 }
 
 export type CenterFormProps = {
-    courtOwnerId: number;
-    createdBy: string;
     courtCenterName: string;
     address: string;
     province: string;

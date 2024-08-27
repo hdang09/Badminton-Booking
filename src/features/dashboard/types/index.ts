@@ -1,4 +1,4 @@
-import { Court } from "@/features/court/types";
+import { Center } from "@/features/center/types";
 
 export type Report = {
     title: string;
@@ -14,6 +14,6 @@ export type Chart = {
 
 export type Dashboard = {
     reports: Report[];
-    top5Courts: Court[];
+    top5Centers: Center[];
     countCourtByCenter: Chart;
 }

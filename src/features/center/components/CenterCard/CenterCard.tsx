@@ -1,5 +1,6 @@
 import { Image, Text, Button, Group, Card } from "@mantine/core";
 import { Center } from "../../types";
+import { Link } from "react-router-dom";
 
 export default function CenterCard({ center }: { center: Center }) {
   return (
@@ -19,7 +20,7 @@ export default function CenterCard({ center }: { center: Center }) {
         {center.address}
       </Text>
 
-      <Button component="a" href={`/dashboard/center/${center.id}`} fullWidth mt="md" radius="md">
+      <Button component={Link} to={`/dashboard/center/${center.id}`} fullWidth mt="md" radius="md">
         Xem trung tâm này
       </Button>
     </Card>

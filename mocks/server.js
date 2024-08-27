@@ -230,6 +230,32 @@ export function makeServer({ environment = "test" } = {}) {
           return new Response(401, {}, { message: "Unauthorized" });
         }
       });
+
+      // GET /badminton-booking/api/payment
+      this.get("/badminton-booking/api/payment", (schema, request) => {
+        try {
+          return [
+            {
+              id: 1,
+              fullName: "Nguyễn Văn A",
+              phone: "0123456789",
+              amount: 4250000,
+              paymentType: "Chuyển khoản",
+              createdAt: "2021-06-01",
+            },
+            {
+              id: 2,
+              fullName: "Nguyễn Văn B",
+              phone: "0123456789",
+              amount: 4250000,
+              paymentType: "Chuyển khoản",
+              createdAt: "2021-06-01",
+            },
+          ];
+        } catch (error) {
+          return new Response(401, {}, { message: "Unauthorized" });
+        }
+      });
     },
   });
 

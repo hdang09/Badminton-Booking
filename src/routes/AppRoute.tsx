@@ -1,8 +1,10 @@
 import Error from "@/components/Error";
 import ScrollToTop from "@/components/ScrollToTop";
+import { Booking } from "@/features/booking/routes";
 import { CreateCenter, ManageCenter, UpdateCenter, ViewCenter } from "@/features/center/routes";
 import { CreateCourt, UpdateCourt, ViewCourt } from "@/features/court/routes";
 import { Dashboard } from "@/features/dashboard/routes";
+import { Payment } from "@/features/payment/routes";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import AuthProvider from "@/providers/AuthProvider";
 import { Navigate, Route, Routes } from "react-router-dom";
@@ -43,8 +45,8 @@ export default function AppRoute() {
             {/* Route /dashboard/center/create */}
             <Route path="create" element={<CreateCenter />} />
           </Route>
-          <Route path="payment" element={<Dashboard />} />
-          <Route path="booking" element={<Dashboard />} />
+          <Route path="payment" element={<Payment />} />
+          <Route path="booking" element={<Booking />} />
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>

@@ -8,6 +8,7 @@ import { useGetCourt } from "../api";
 import SectionTitle from "@/components/SectionTitle";
 import CourtList from "../components/CourtList";
 import { numberToPrice } from "@/libs/helper";
+import { Link } from "react-router-dom";
 
 export default function ViewCourt() {
   const { courtId, centerId } = useParams();
@@ -78,8 +79,8 @@ export default function ViewCourt() {
 
           <div className="flex flex-row gap-x-3 gap-y-3 sm:flex-col mt-8">
             <Button
-              component="a"
-              href={`/dashboard/center/${centerId}/court/${courtId}/update`}
+              component={Link}
+              to={`/dashboard/center/${centerId}/court/${courtId}/update`}
               className="py-[10px] flex-1"
               leftSection={<GrUpdate />}
             >

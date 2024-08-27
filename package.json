@@ -11,7 +11,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fullcalendar/daygrid": "^6.1.15",
+    "@fullcalendar/interaction": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
+    "@fullcalendar/timegrid": "^6.1.15",
     "@lexical/list": "^0.17.0",
     "@lexical/react": "^0.17.0",
     "@mantine/core": "^7.12.1",
@@ -23,6 +26,7 @@
     "@tanstack/react-table": "^8.20.1",
     "axios": "^1.7.4",
     "chart.js": "^4.4.4",
+    "dayjs": "^1.11.13",
     "history": "^5.3.0",
     "js-cookie": "^3.0.5",
     "lexical": "^0.17.0",

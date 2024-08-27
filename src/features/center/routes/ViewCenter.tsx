@@ -1,7 +1,6 @@
 import { IoIosAdd, IoIosInformationCircle } from "react-icons/io";
 import { MdDataset } from "react-icons/md";
 import { FaAddressBook, FaClock } from "react-icons/fa";
-import { AiFillDelete } from "react-icons/ai";
 import { GrUpdate } from "react-icons/gr";
 import { Button, Container, Flex, Image, Text } from "@mantine/core";
 import { useParams } from "react-router";
@@ -9,6 +8,7 @@ import { useGetCenter } from "../api";
 import Description from "../components/Description";
 import SectionTitle from "@/components/SectionTitle";
 import CourtList from "@/features/court/components/CourtList";
+import { Link } from "react-router-dom";
 
 export default function CenterForm() {
   const { centerId } = useParams();
@@ -57,16 +57,16 @@ export default function CenterForm() {
           <Image src={center.image} />
           <div className="flex flex-row gap-x-3  gap-y-3 sm:flex-col">
             <Button
-              component="a"
-              href={`/dashboard/center/${center.id}/update`}
+              component={Link}
+              to={`/dashboard/center/${center.id}/update`}
               className="py-[10px] flex-1"
               leftSection={<GrUpdate />}
             >
               Cập nhật
             </Button>
-            <Button className="py-[10px] flex-1" bg="red" leftSection={<AiFillDelete />}>
+            {/* <Button className="py-[10px] flex-1" bg="red" leftSection={<AiFillDelete />}>
               Xóa
-            </Button>
+            </Button> */}
           </div>
         </div>
 
@@ -93,8 +93,8 @@ export default function CenterForm() {
         <Flex justify="space-between" align="center" mb="xl">
           <SectionTitle className="mb-0">Các sân của trung tâm này</SectionTitle>
           <Button
-            component="a"
-            href={`/dashboard/center/${centerId}/court/create`}
+            component={Link}
+            to={`/dashboard/center/${centerId}/court/create`}
             radius="md"
             leftSection={<IoIosAdd size={24} />}
           >

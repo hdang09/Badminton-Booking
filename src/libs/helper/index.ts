@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import Cookies from "js-cookie";
 
 /* eslint-disable no-useless-escape */
@@ -68,9 +69,23 @@ export const resetAuthStore = () => {
 };
 
 export const numberToPrice = (num: number): string => {
+  if (!num) return "0đ";
+
   const numStr: string = num.toString();
 
   const formattedStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "đ";
 
   return formattedStr;
 };
+
+export const formatTime = (dateTime: string | undefined) => {
+  if (!dateTime) return '';
+
+  return dayjs(dateTime).format('HH:mm')
+}
+
+export const formatDateTime = (dateTime: string | undefined) => {
+  if (!dateTime) return '';
+
+  return dayjs(dateTime).format('DD/MM/YYYY HH:mm')
+}

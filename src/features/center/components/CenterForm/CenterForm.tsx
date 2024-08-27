@@ -1,5 +1,5 @@
 import { useForm } from "@mantine/form";
-import { TextInput, NumberInput, Button, Text } from "@mantine/core";
+import { TextInput, Button, Text } from "@mantine/core";
 import { useNavigate, useParams } from "react-router";
 import { useCreateCenterMutation, useGetCenter, useUpdateCenterMutation } from "../../api";
 import { useEffect } from "react";
@@ -13,8 +13,6 @@ function CenterForm() {
 
   const form = useForm({
     initialValues: {
-      courtOwnerId: 0,
-      createdBy: "",
       courtCenterName: "",
       address: "",
       latitude: "",
@@ -25,8 +23,6 @@ function CenterForm() {
     },
 
     validate: {
-      courtOwnerId: (value) => (value ? null : "Mã chủ sân là bắt buộc"),
-      createdBy: (value) => (value ? null : "Người tạo là bắt buộc"),
       courtCenterName: (value) => (value ? null : "Tên trung tâm sân là bắt buộc"),
       address: (value) => (value ? null : "Địa chỉ là bắt buộc"),
       latitude: (value) => (value ? null : "Vĩ độ là bắt buộc"),
@@ -83,30 +79,6 @@ function CenterForm() {
         onSubmit={form.onSubmit(handleSubmit)}
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
       >
-        <div className="flex flex-col">
-          <label className="text-gray-700 mb-2" htmlFor="courtOwnerId">
-            Mã chủ sân
-          </label>
-          <NumberInput
-            id="courtOwnerId"
-            placeholder="Nhập mã chủ sân"
-            {...form.getInputProps("courtOwnerId")}
-            className="border border-gray-300 rounded-lg p-2"
-          />
-        </div>
-
-        <div className="flex flex-col">
-          <label className="text-gray-700 mb-2" htmlFor="createdBy">
-            Người tạo
-          </label>
-          <TextInput
-            id="createdBy"
-            placeholder="Nhập tên người tạo"
-            {...form.getInputProps("createdBy")}
-            className="border border-gray-300 rounded-lg p-2"
-          />
-        </div>
-
         <div className="flex flex-col">
           <label className="text-gray-700 mb-2" htmlFor="courtCenterName">
             Tên trung tâm sân

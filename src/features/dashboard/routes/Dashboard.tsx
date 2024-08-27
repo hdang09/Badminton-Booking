@@ -23,7 +23,8 @@ import {
 import DoughnutChart from "../components/DoughnutChart";
 import { useGetDashboard } from "../api";
 
-import { Container, Table, TableData } from "@mantine/core";
+import { Container, Table } from "@mantine/core";
+import CustomTable from "@/components/CustomTable";
 
 ChartJS.register(
   CategoryScale,
@@ -49,20 +50,21 @@ export default function Page() {
   // Get all reports
   const { data } = useGetDashboard();
 
-  const tableData: TableData = {
-    head: ["Element position", "Atomic mass", "Symbol", "Element name"],
-    body: [
-      [6, 12.011, "C", "Carbon"],
-      [7, 14.007, "N", "Nitrogen"],
-      [39, 88.906, "Y", "Yttrium"],
-      [56, 137.33, "Ba", "Barium"],
-      [58, 140.12, "Ce", "Cerium"],
-    ],
-  };
+  const headers = ["STT", "Tên sân", "Địa chỉ"];
+
+  const rows = data?.top5Centers?.map((element) => (
+    <Table.Tr key={element.id}>
+      <Table.Td>{element.id}</Table.Td>
+      <Table.Td>{element.courtCenterName}</Table.Td>
+      <Table.Td>{element.province}</Table.Td>
+    </Table.Tr>
+  ));
+
+  console.log(rows);
 
   return (
     <Container size="xl">
-      <h1 className="text-3xl font-bold">Dashboard Page</h1>
+      <h1 className="text-3xl font-bold">Trang thống kê</h1>
       <div className="mt-6">
         <div className="mb-6 grid grid-cols-4 gap-6">
           {data?.reports?.map((report, index) => (
@@ -86,8 +88,8 @@ export default function Page() {
         </div>
         <div className="grid grid-cols-3 gap-6">
           <div className="col-span-2 rounded-lg bg-white p-6 shadow-md">
-            <h2 className="mb-4 text-2xl font-semibold">Top 5 trung tâm</h2>
-            <Table data={tableData} verticalSpacing="lg" striped />
+            <h2 className="mb-4 text-2xl font-semibold">Trung tâm nổi bật</h2>
+            {data?.top5Centers && <CustomTable headers={headers} rows={rows} />}
           </div>
           <div className="rounded-lg bg-white p-6 shadow-md">
             <div className="mb-6">
