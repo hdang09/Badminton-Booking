@@ -48,9 +48,9 @@ export default function ViewCourt() {
   return (
     <Container size="xl">
       <div className="flex gap-6 w-full p-3 relative flex-col sm:flex-row sm:px-6 sm:py-4">
-        <Image src={court.image} maw="700px" radius="md" />
+        <Image src={court.image} maw="700px" radius="md" className="flex-1" />
 
-        <div className="rounded bg-slate-50 flex-1 p-4">
+        <div className="rounded bg-slate-50 p-4 max-w-80">
           <SectionTitle>Thông tin sân</SectionTitle>
           <div className="flex gap-3 text-md mb-4">
             Tên sân: <strong className="flex-1 text-right">{court.courtName}</strong>
@@ -60,7 +60,7 @@ export default function ViewCourt() {
           </div>
           <div className="flex gap-3 text-md mb-4">
             Giá tiền:{" "}
-            <strong className="flex-1 text-right">{numberToPrice(court.pricePerSlot)}</strong>
+            <strong className="flex-1 text-right">{numberToPrice(court.pricePerSlot)}/giờ</strong>
           </div>
           <div className="flex flex-col gap-3 text-md mb-4">
             Dịch vụ tiện ích:

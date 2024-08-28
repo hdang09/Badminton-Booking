@@ -13,7 +13,7 @@ export default [
     ward: "Nghĩa Tân",
     latitude: "21.037539",
     longtitude: "105.783052",
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png",
+    image: "https://i.imgur.com/JsNxV4r.jpeg",
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ export default [
     ward: "Bến Thành",
     latitude: "10.773168",
     longtitude: "106.698473",
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png",
+    image: "https://i.imgur.com/JsNxV4r.jpeg",
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ export default [
     ward: "Hòa Thuận Tây",
     latitude: "16.047079",
     longtitude: "108.206230",
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png",
+    image: "https://i.imgur.com/JsNxV4r.jpeg",
   },
   {
     id: 4,
@@ -61,7 +61,7 @@ export default [
     ward: "Phú Cường",
     latitude: "11.007536",
     longtitude: "106.664607",
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png",
+    image: "https://i.imgur.com/JsNxV4r.jpeg",
   },
   {
     id: 5,
@@ -77,7 +77,7 @@ export default [
     ward: "Lạch Tray",
     latitude: "20.856026",
     longtitude: "106.688085",
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png",
+    image: "https://i.imgur.com/JsNxV4r.jpeg",
   },
   {
     id: 6,
@@ -93,7 +93,7 @@ export default [
     ward: "Xuân Khánh",
     latitude: "10.037367",
     longtitude: "105.786070",
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png",
+    image: "https://i.imgur.com/JsNxV4r.jpeg",
   },
   {
     id: 7,
@@ -109,7 +109,7 @@ export default [
     ward: "Lộc Thọ",
     latitude: "12.238791",
     longtitude: "109.196749",
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png",
+    image: "https://i.imgur.com/JsNxV4r.jpeg",
   },
   {
     id: 8,
@@ -125,6 +125,6 @@ export default [
     ward: "Phường 1",
     latitude: "10.350852",
     longtitude: "107.084370",
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png",
+    image: "https://i.imgur.com/JsNxV4r.jpeg",
   },
 ];

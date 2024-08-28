@@ -7,7 +7,7 @@ export default [
     createdAt: 1723942935.36,
     updatedAt: 1723943154.82,
     pricePerSlot: 150000.0,
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-4.png",
+    image: "https://i.imgur.com/JVHW6f0.jpeg",
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ export default [
     createdAt: 1723995861.513,
     updatedAt: 1723995861.513,
     pricePerSlot: 100000.0,
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-4.png",
+    image: "https://i.imgur.com/JVHW6f0.jpeg",
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ export default [
     createdAt: 1724000000.0,
     updatedAt: 1724000200.0,
     pricePerSlot: 120000.0,
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-4.png",
+    image: "https://i.imgur.com/JVHW6f0.jpeg",
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ export default [
     createdAt: 1724001000.0,
     updatedAt: 1724001200.0,
     pricePerSlot: 130000.0,
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-4.png",
+    image: "https://i.imgur.com/JVHW6f0.jpeg",
   },
   {
     id: 5,
@@ -46,7 +46,7 @@ export default [
     createdAt: 1724002000.0,
     updatedAt: 1724002200.0,
     pricePerSlot: 140000.0,
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-4.png",
+    image: "https://i.imgur.com/JVHW6f0.jpeg",
   },
   {
     id: 6,
@@ -56,7 +56,7 @@ export default [
     createdAt: 1724003000.0,
     updatedAt: 1724003200.0,
     pricePerSlot: 125000.0,
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-4.png",
+    image: "https://i.imgur.com/JVHW6f0.jpeg",
   },
   {
     id: 7,
@@ -66,7 +66,7 @@ export default [
     createdAt: 1724004000.0,
     updatedAt: 1724004200.0,
     pricePerSlot: 110000.0,
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-4.png",
+    image: "https://i.imgur.com/JVHW6f0.jpeg",
   },
   {
     id: 8,
@@ -76,7 +76,7 @@ export default [
     createdAt: 1724005000.0,
     updatedAt: 1724005200.0,
     pricePerSlot: 135000.0,
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-4.png",
+    image: "https://i.imgur.com/JVHW6f0.jpeg",
   },
   {
     id: 9,
@@ -86,7 +86,7 @@ export default [
     createdAt: 1724006000.0,
     updatedAt: 1724006200.0,
     pricePerSlot: 145000.0,
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-4.png",
+    image: "https://i.imgur.com/JVHW6f0.jpeg",
   },
   {
     id: 10,
@@ -96,6 +96,6 @@ export default [
     createdAt: 1724007000.0,
     updatedAt: 1724007200.0,
     pricePerSlot: 150000.0,
-    image: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-4.png",
+    image: "https://i.imgur.com/JVHW6f0.jpeg",
   },
 ];

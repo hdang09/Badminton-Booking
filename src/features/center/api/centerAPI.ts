@@ -4,7 +4,7 @@ import { Center, CenterReq } from '../types';
 
 const getListCenter = async (): Promise<Center[]> => {
     try {
-        const response: Center[] = await httpRequest.get('/badminton-booking/api/center/owner');
+        const response: Center[] = await httpRequest.get('/center/owner');
         return response;
     } catch (error: any) {
         throw new Error(error);
@@ -15,7 +15,7 @@ export const getCenter = async (id: string): Promise<Center | null> => {
     if (!id) return null;
 
     try {
-        const response: Center = await httpRequest.get(`/badminton-booking/api/center/${id}`);
+        const response: Center = await httpRequest.get(`/center/${id}`);
         return response;
     } catch (error: any) {
         throw new Error(error);
@@ -24,7 +24,7 @@ export const getCenter = async (id: string): Promise<Center | null> => {
 
 export const createCenter = async (data: CenterReq): Promise<Center> => {
     try {
-        const response: Center = await httpRequest.post('/badminton-booking/api/center', data);
+        const response: Center = await httpRequest.post('/center', data);
         return response;
     } catch (error: any) {
         throw new Error(error);
@@ -33,7 +33,7 @@ export const createCenter = async (data: CenterReq): Promise<Center> => {
 
 export const updateCenter = async (data: CenterReq): Promise<Center> => {
     try {
-        const response: Center = await httpRequest.put(`/badminton-booking/api/center`, data);
+        const response: Center = await httpRequest.put(`/center`, data);
         return response;
     } catch (error: any) {
         throw new Error(error);
@@ -44,7 +44,6 @@ export const useGetListCenter = () => {
     return useQuery({
         queryKey: ['centers'],
         queryFn: () => getListCenter(),
-        staleTime: Infinity,
     });
 };
 
@@ -52,7 +51,6 @@ export const useGetCenter = (id: string) => {
     return useQuery({
         queryKey: ['center', id],
         queryFn: () => getCenter(id),
-        staleTime: Infinity,
         enabled: !!id,
     });
 };

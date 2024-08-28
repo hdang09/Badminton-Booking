@@ -4,7 +4,7 @@ import { Court, CourtReq } from '../types';
 
 const getListCourt = async (centerId: string): Promise<Court[]> => {
     try {
-        const response: Court[] = await httpRequest.get(`/badminton-booking/api/court?centerId=${centerId}`);
+        const response: Court[] = await httpRequest.get(`/court?centerId=${centerId}`);
         return response;
     } catch (error: any) {
         throw new Error(error);
@@ -14,7 +14,7 @@ const getListCourt = async (centerId: string): Promise<Court[]> => {
 export const getCourt = async (centerId: string, courtId: string): Promise<Court | null> => {
     if (!centerId) return null;
 
-    let url = `/badminton-booking/api/court?centerId=${centerId}`;
+    let url = `/court?centerId=${centerId}`;
     if (courtId) {
         url += `&courtId=${courtId}`;
     }
@@ -29,7 +29,7 @@ export const getCourt = async (centerId: string, courtId: string): Promise<Court
 
 export const createCourt = async (data: CourtReq): Promise<Court> => {
     try {
-        const response: Court = await httpRequest.post('/badminton-booking/api/court', data);
+        const response: Court = await httpRequest.post('/court', data);
         return response;
     } catch (error: any) {
         throw new Error(error);
@@ -38,7 +38,7 @@ export const createCourt = async (data: CourtReq): Promise<Court> => {
 
 export const updateCourt = async (data: CourtReq): Promise<Court> => {
     try {
-        const response: Court = await httpRequest.put(`/badminton-booking/api/court`, data);
+        const response: Court = await httpRequest.put(`/court`, data);
         return response;
     } catch (error: any) {
         throw new Error(error);
@@ -49,7 +49,6 @@ export const useGetListCourt = (centerId: string) => {
     return useQuery({
         queryKey: ['courts', centerId],
         queryFn: () => getListCourt(centerId),
-        staleTime: Infinity,
     });
 };
 
@@ -57,7 +56,6 @@ export const useGetCourt = (centerId: string, courtId: string) => {
     return useQuery({
         queryKey: ['court', centerId, courtId],
         queryFn: () => getCourt(centerId, courtId),
-        staleTime: Infinity,
         enabled: !!centerId && !!courtId,
     });
 };

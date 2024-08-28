@@ -14,11 +14,12 @@ export default function Payment() {
 
   const { data: payments } = useGetPayment();
 
-  const filteredData = Array.isArray(payments)
-    ? payments.filter((payment) =>
-        payment.fullName.toLowerCase().includes(searchTerm.toLowerCase()),
-      )
-    : [];
+  const filteredData =
+    payments && Array.isArray(payments)
+      ? payments.filter((payment) =>
+          payment.fullName?.toLowerCase().includes(searchTerm.toLowerCase()),
+        )
+      : [];
 
   const headers = [
     "STT",

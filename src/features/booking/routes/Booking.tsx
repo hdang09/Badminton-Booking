@@ -4,7 +4,6 @@ import { useState } from "react";
 import { formatDateTime } from "@/libs/helper";
 import { useGetBooking } from "../api";
 import { Event } from "../types";
-import { useGetListCenter } from "@/features/center/api";
 import Calendar from "../components/Calendar/Calendar";
 import Dropdown from "../components/Dropdown";
 
@@ -12,13 +11,16 @@ export default function Booking() {
   // Modal
   const [opened, { open, close }] = useDisclosure(false);
 
-  const { data: events } = useGetBooking();
-
   // Current event
   const [currentEvent, setCurrentEvent] = useState<Event>();
 
-  const { data: centers } = useGetListCenter();
+  // API data
+  const { data: events } = useGetBooking();
 
+  // State courtId
+  const [courtId, setCourtId] = useState("");
+
+  // Handle event click
   const handleEventClick = (clickInfo: any) => {
     const clickedEvent: Event = {
       title: clickInfo.event.title,
@@ -43,11 +45,13 @@ export default function Booking() {
             </div>
             <p className="mt-1 text-sm text-gray-500">Đây là những lịch đặt của các sân</p>
           </div>
-          {centers && <Dropdown centers={centers} />}
+          <Dropdown setCourtId={setCourtId} courtId={courtId} />
         </div>
 
         <div className="mt-8 flex flex-col overflow-x-auto">
-          {events && <Calendar events={events} handleEventClick={handleEventClick} />}
+          {events && (
+            <Calendar events={courtId ? events : []} handleEventClick={handleEventClick} />
+          )}
         </div>
       </Container>
 

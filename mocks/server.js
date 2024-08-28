@@ -65,8 +65,8 @@ export function makeServer({ environment = "test" } = {}) {
         }
       });
 
-      // GET /badminton-booking/api/center/owner/{{ownerId}}?size=5&page=1&sort=courtCenterName&direction=DESC
-      this.get("/badminton-booking/api/center/owner", (schema, request) => {
+      // GET /center/owner/{{ownerId}}?size=5&page=1&sort=courtCenterName&direction=DESC
+      this.get("/center/owner", (schema, request) => {
         try {
           return schema.centers.all().models;
         } catch (error) {
@@ -74,8 +74,8 @@ export function makeServer({ environment = "test" } = {}) {
         }
       });
 
-      // GET /badminton-booking/api/center/{{centerId}}
-      this.get("/badminton-booking/api/center/:centerId", (schema, request) => {
+      // GET /center/{{centerId}}
+      this.get("/center/:centerId", (schema, request) => {
         try {
           let centerId = request.params.centerId;
           let center = schema.centers.find(centerId);
@@ -90,8 +90,8 @@ export function makeServer({ environment = "test" } = {}) {
         }
       });
 
-      // POST /badminton-booking/api/center
-      this.post("/badminton-booking/api/center", (schema, request) => {
+      // POST /center
+      this.post("/center", (schema, request) => {
         try {
           let attrs = JSON.parse(request.requestBody);
 
@@ -103,8 +103,8 @@ export function makeServer({ environment = "test" } = {}) {
         }
       });
 
-      // PUT /badminton-booking/api/center
-      this.put("/badminton-booking/api/center", (schema, request) => {
+      // PUT /center
+      this.put("/center", (schema, request) => {
         try {
           let attrs = JSON.parse(request.requestBody);
           let centerId = attrs.id;
@@ -120,8 +120,8 @@ export function makeServer({ environment = "test" } = {}) {
         }
       });
 
-      // GET /badminton-booking/api/center/owner/{{ownerId}}?size=5&page=1&sort=courtCenterName&direction=DESC
-      this.get("/badminton-booking/api/center/owner", (schema, request) => {
+      // GET /center/owner/{{ownerId}}?size=5&page=1&sort=courtCenterName&direction=DESC
+      this.get("/center/owner", (schema, request) => {
         try {
           return schema.centers.all().models;
         } catch (error) {
@@ -129,8 +129,8 @@ export function makeServer({ environment = "test" } = {}) {
         }
       });
 
-      // GET /badminton-booking/api/court?centerId=3?courtId=1
-      this.get("/badminton-booking/api/court", (schema, request) => {
+      // GET /court?centerId=3?courtId=1
+      this.get("/court", (schema, request) => {
         const centerId = request.queryParams.centerId;
         const courtId = request.queryParams.courtId;
 
@@ -161,8 +161,8 @@ export function makeServer({ environment = "test" } = {}) {
         return courts.models;
       });
 
-      // POST /badminton-booking/api/center
-      this.post("/badminton-booking/api/court", (schema, request) => {
+      // POST /center
+      this.post("/court", (schema, request) => {
         try {
           let attrs = JSON.parse(request.requestBody);
 
@@ -174,8 +174,8 @@ export function makeServer({ environment = "test" } = {}) {
         }
       });
 
-      // PUT /badminton-booking/api/center
-      this.put("/badminton-booking/api/center", (schema, request) => {
+      // PUT /center
+      this.put("/center", (schema, request) => {
         try {
           let attrs = JSON.parse(request.requestBody);
           let court = schema.courts.find(attrs.id);
@@ -190,8 +190,8 @@ export function makeServer({ environment = "test" } = {}) {
         }
       });
 
-      // GET /badminton-booking/api/dashboard
-      this.get("/badminton-booking/api/dashboard", (schema, request) => {
+      // GET /dashboard
+      this.get("/dashboard", (schema, request) => {
         try {
           return {
             reports: [
@@ -231,8 +231,8 @@ export function makeServer({ environment = "test" } = {}) {
         }
       });
 
-      // GET /badminton-booking/api/payment
-      this.get("/badminton-booking/api/payment", (schema, request) => {
+      // GET /payment
+      this.get("/payment", (schema, request) => {
         try {
           return [
             {
@@ -305,8 +305,8 @@ export function makeServer({ environment = "test" } = {}) {
         }
       });
 
-      // GET /badminton-booking/api/booking?ownerId=1&centerId=1
-      this.get("/badminton-booking/api/booking", (schema, request) => {
+      // GET /booking?ownerId=1&centerId=1
+      this.get("/booking", (schema, request) => {
         try {
           return [
             { title: "Sân Vip 1", start: "2024-08-26T10:00:00", end: "2024-08-26T11:00:00" },

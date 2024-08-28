@@ -32,6 +32,7 @@ export default function Calendar({
       eventClick={handleEventClick}
       eventContent={renderEventContent}
       locale={viLocale}
+      droppable={true}
       headerToolbar={{
         start: "prev,next today",
         center: "title",
