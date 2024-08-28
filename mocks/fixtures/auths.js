@@ -36,8 +36,8 @@ export default [
   },
   {
     id: "8",
-    username: "frank_gray",
-    password: "securepass123",
+    username: "hung14444",
+    password: "Hungcailks123",
   },
   {
     id: "9",

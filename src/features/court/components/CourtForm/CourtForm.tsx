@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import { useCreateCourtMutation, useGetCourt, useUpdateCourtMutation } from "../../api";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
-import { CourtFormProps, CourtReq } from "../../types";
+import { CourtFormProps } from "../../types";
 
 function CourtForm() {
   const navigate = useNavigate();
@@ -52,16 +52,17 @@ function CourtForm() {
   });
 
   const handleSubmit = (values: CourtFormProps) => {
+    const newValues = {
+      ...values,
+      courtCenterId: Number.parseInt(centerId ?? ""),
+    };
+
     if (courtId) {
-      const newValues = {
-        ...values,
-        courtCenterId: Number.parseInt(centerId ?? ""),
-      };
       updateCourtMutation.mutate(newValues);
       return;
     }
 
-    createCourtMutation.mutate(values as CourtReq);
+    createCourtMutation.mutate(newValues);
   };
 
   return (

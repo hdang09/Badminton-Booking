@@ -7,7 +7,7 @@ export interface LoginCredentials {
 
 export interface ILogin {
   token: string;
-  user: IUser;
+  user?: IUser;
 }
 
 export interface IRefreshToken {
@@ -30,5 +30,5 @@ export interface ISession {
 
 export interface ISessionUser {
   session: ISession;
-  user: IUser;
+  user?: IUser;
 }

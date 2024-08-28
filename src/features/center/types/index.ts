@@ -1,3 +1,9 @@
+export type Timeslots = {
+    id: number;
+    startTime: string;
+    endTime: string
+}
+
 export type Center = {
     id: number;
     courtOwnerId: number;
@@ -13,6 +19,7 @@ export type Center = {
     latitude: string;
     longtitude: string;
     image?: string;
+    timeslots: Timeslots[]
 }
 
 export type CenterReq = {

@@ -3,6 +3,8 @@ import users from "./fixtures/users";
 import auths from "./fixtures/auths";
 import centers from "./fixtures/centers";
 import courts from "./fixtures/courts";
+import { getRandomInt } from "@/libs/helper";
+const API_URL = "https://badminton-booking-api-v3mmhjoipq-as.a.run.app/badminton-booking";
 
 function checkValidToken(token) {
   if (token) {
@@ -42,16 +44,27 @@ export function makeServer({ environment = "test" } = {}) {
       // POST /api/auth/signin
       this.post("/auth/sign-in", (schema, request) => {
         const attrs = JSON.parse(request.requestBody);
-        const auth = schema.auths.findBy({
-          username: attrs.username,
-          password: attrs.password,
-        });
-        if (auth) {
-          return {
-            token: `${Date.now() + 1 * 60 * 1000}-${auth.id}`,
-          };
+        try {
+          const res = fetch(`${API_URL}/api/auth/sign-in`, {
+            method: "POST",
+            body: JSON.stringify(attrs),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          return res.json();
+        } catch (e) {
+          const auth = schema.auths.findBy({
+            username: attrs.username,
+            password: attrs.password,
+          });
+          if (auth) {
+            return {
+              token: `${Date.now() + 1 * 60 * 1000}-${auth.id}`,
+            };
+          }
+          return new Response(401, {}, "Unauthorized");
         }
-        return new Response(401, {}, "Unauthorized");
       });
 
       // GET /api/user/:id
@@ -65,18 +78,26 @@ export function makeServer({ environment = "test" } = {}) {
         }
       });
 
-      // GET /center/owner/{{ownerId}}?size=5&page=1&sort=courtCenterName&direction=DESC
-      this.get("/center/owner", (schema, request) => {
+      // GET /center/owner?ownerId=1
+      this.get("/center/owner", async (schema, request) => {
         try {
-          return schema.centers.all().models;
+          const res = await fetch(
+            `https://badminton-booking-api-v3mmhjoipq-as.a.run.app/badminton-booking/api/center/owner?ownerId=${request.queryParams.ownerId}`,
+          );
+          return res.json();
         } catch (error) {
-          return new Response(401, {}, { message: "Unauthorized" });
+          console.log("error", error);
+
+          return schema.centers.all().models;
         }
       });
 
       // GET /center/{{centerId}}
-      this.get("/center/:centerId", (schema, request) => {
+      this.get("/center/:centerId", async (schema, request) => {
         try {
+          const res = await fetch(`${API_URL}/api/center/${request.params.centerId}`);
+          return res.json();
+        } catch (error) {
           let centerId = request.params.centerId;
           let center = schema.centers.find(centerId);
 
@@ -85,21 +106,28 @@ export function makeServer({ environment = "test" } = {}) {
           } else {
             return new Response(404, {}, { message: "Center not found" });
           }
-        } catch (error) {
-          return new Response(500, {}, { message: "Internal Server Error" });
         }
       });
 
       // POST /center
-      this.post("/center", (schema, request) => {
+      this.post("/center", async (schema, request) => {
+        let attrs = JSON.parse(request.requestBody);
         try {
-          let attrs = JSON.parse(request.requestBody);
+          console.log("1");
+
+          const res = await fetch(`${API_URL}/api/center`, {
+            method: "POST",
+            body: JSON.stringify(attrs),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          return res.json();
+        } catch (error) {
+          console.log("2");
 
           let newCenter = schema.centers.create(attrs);
-
           return newCenter;
-        } catch (error) {
-          return new Response(500, {}, { message: "Internal Server Error" });
         }
       });
 
@@ -117,15 +145,6 @@ export function makeServer({ environment = "test" } = {}) {
           }
         } catch (error) {
           return new Response(500, {}, { message: "Internal Server Error" });
-        }
-      });
-
-      // GET /center/owner/{{ownerId}}?size=5&page=1&sort=courtCenterName&direction=DESC
-      this.get("/center/owner", (schema, request) => {
-        try {
-          return schema.centers.all().models;
-        } catch (error) {
-          return new Response(401, {}, { message: "Unauthorized" });
         }
       });
 
@@ -321,6 +340,8 @@ export function makeServer({ environment = "test" } = {}) {
           return new Response(401, {}, { message: "Unauthorized" });
         }
       });
+
+      this.passthrough(`${API_URL}/**`);
     },
   });
 

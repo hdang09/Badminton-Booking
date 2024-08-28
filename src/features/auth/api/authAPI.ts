@@ -12,7 +12,8 @@ const login = async (credentials: LoginCredentials): Promise<ILogin> => {
     const resUser: IUser = await getUser();
     return { token: resLogin.token, user: resUser };
   } catch (e: any) {
-    throw new Error(e);
+    // throw new Error(e);
+    return { token: "" };
   }
 };
 
@@ -23,7 +24,8 @@ const getSessionUser = async (): Promise<ISessionUser> => {
     sessionStorage.setItem("badminton-session", resSession.sessionId);
     return { session: resSession, user: resUser };
   } catch (e: any) {
-    throw new Error(e.error);
+    return { session: { userId: "", roleId: "", sessionId: "" } };
+    // throw new Error(e.error);
   }
 };
 

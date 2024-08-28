@@ -78,8 +78,8 @@ export default [
   },
   {
     id: "8",
-    email: "frank.gray@example.com",
-    fullName: "Frank Gray",
+    email: "hung.gray@example.com",
+    fullName: "Hung Gray",
     phone: "84123789456",
     address: "303 Cedar St, Sometown, Vietnam",
     avatar: "https://example.com/avatar6.jpg",

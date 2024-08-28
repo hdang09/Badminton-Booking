@@ -2,7 +2,6 @@ import { Container, Modal, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
 import { formatDateTime } from "@/libs/helper";
-import { useGetBooking } from "../api";
 import { Event } from "../types";
 import Calendar from "../components/Calendar/Calendar";
 import Dropdown from "../components/Dropdown";
@@ -14,11 +13,48 @@ export default function Booking() {
   // Current event
   const [currentEvent, setCurrentEvent] = useState<Event>();
 
-  // API data
-  const { data: events } = useGetBooking();
-
   // State courtId
   const [courtId, setCourtId] = useState("");
+
+  // API data
+  // const { data: events } = useGetBooking(courtId);
+  const events: Event[] = [
+    {
+      title: "Sân Vip 1",
+      start: new Date("2024-08-26T10:00:00"),
+      end: new Date("2024-08-26T11:00:00"),
+    },
+    {
+      title: "Sân Vip 2",
+      start: new Date("2024-08-27T13:30:00"),
+      end: new Date("2024-08-27T15:00:00"),
+    },
+    {
+      title: "Sân Vip 3",
+      start: new Date("2024-08-28T09:00:00"),
+      end: new Date("2024-08-28T10:30:00"),
+    },
+    {
+      title: "Sân Vip 4",
+      start: new Date("2024-08-29T14:00:00"),
+      end: new Date("2024-08-29T16:00:00"),
+    },
+    {
+      title: "Sân Vip 5",
+      start: new Date("2024-08-30T08:00:00"),
+      end: new Date("2024-08-30T09:00:00"),
+    },
+    {
+      title: "Sân Vip 6",
+      start: new Date("2024-08-31T17:00:00"),
+      end: new Date("2024-08-31T18:00:00"),
+    },
+    {
+      title: "Sân Vip 7",
+      start: new Date("2024-09-01T15:00:00"),
+      end: new Date("2024-09-01T16:30:00"),
+    },
+  ];
 
   // Handle event click
   const handleEventClick = (clickInfo: any) => {
@@ -49,9 +85,7 @@ export default function Booking() {
         </div>
 
         <div className="mt-8 flex flex-col overflow-x-auto">
-          {events && (
-            <Calendar events={courtId ? events : []} handleEventClick={handleEventClick} />
-          )}
+          <Calendar events={courtId && events ? events : []} handleEventClick={handleEventClick} />
         </div>
       </Container>
 

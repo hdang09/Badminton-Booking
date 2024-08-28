@@ -48,7 +48,14 @@ export default function ViewCourt() {
   return (
     <Container size="xl">
       <div className="flex gap-6 w-full p-3 relative flex-col sm:flex-row sm:px-6 sm:py-4">
-        <Image src={court.image} maw="700px" radius="md" className="flex-1" />
+        <Image
+          src={court.image}
+          maw="700px"
+          radius="md"
+          className="flex-1"
+          alt={court.courtName}
+          fallbackSrc="https://i.imgur.com/JVHW6f0.jpeg"
+        />
 
         <div className="rounded bg-slate-50 p-4 max-w-80">
           <SectionTitle>Thông tin sân</SectionTitle>

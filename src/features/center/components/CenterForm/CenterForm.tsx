@@ -62,12 +62,18 @@ function CenterForm() {
   });
 
   const handleSubmit = (values: CenterFormProps) => {
+    const courtOwnerId = localStorage.getItem("ownerId") ?? "1";
+    const newValues = {
+      ...values,
+      courtOwnerId: Number.parseInt(courtOwnerId),
+    };
+
     if (centerId) {
-      updateCenterMutation.mutate(values);
+      updateCenterMutation.mutate(newValues);
       return;
     }
 
-    createCenterMutation.mutate(values);
+    createCenterMutation.mutate(newValues);
   };
 
   return (

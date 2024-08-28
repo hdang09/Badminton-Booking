@@ -14,6 +14,13 @@ export default [
     latitude: "21.037539",
     longtitude: "105.783052",
     image: "https://i.imgur.com/JsNxV4r.jpeg",
+    timeslots: [
+      { id: 1, startTime: "08:00", endTime: "09:00" },
+      { id: 2, startTime: "09:00", endTime: "10:00" },
+      { id: 3, startTime: "10:00", endTime: "11:00" },
+      { id: 4, startTime: "11:00", endTime: "12:00" },
+      { id: 41, startTime: "12:00", endTime: "13:00" },
+    ],
   },
   {
     id: 2,
@@ -30,6 +37,12 @@ export default [
     latitude: "10.773168",
     longtitude: "106.698473",
     image: "https://i.imgur.com/JsNxV4r.jpeg",
+    timeslots: [
+      { id: 5, startTime: "08:00", endTime: "09:00" },
+      { id: 6, startTime: "09:00", endTime: "10:00" },
+      { id: 7, startTime: "10:00", endTime: "11:00" },
+      { id: 8, startTime: "11:00", endTime: "12:00" },
+    ],
   },
   {
     id: 3,
@@ -46,6 +59,12 @@ export default [
     latitude: "16.047079",
     longtitude: "108.206230",
     image: "https://i.imgur.com/JsNxV4r.jpeg",
+    timeslots: [
+      { id: 9, startTime: "08:00", endTime: "09:00" },
+      { id: 10, startTime: "09:00", endTime: "10:00" },
+      { id: 11, startTime: "10:00", endTime: "11:00" },
+      { id: 12, startTime: "11:00", endTime: "12:00" },
+    ],
   },
   {
     id: 4,
@@ -62,6 +81,12 @@ export default [
     latitude: "11.007536",
     longtitude: "106.664607",
     image: "https://i.imgur.com/JsNxV4r.jpeg",
+    timeslots: [
+      { id: 13, startTime: "08:00", endTime: "09:00" },
+      { id: 14, startTime: "09:00", endTime: "10:00" },
+      { id: 15, startTime: "10:00", endTime: "11:00" },
+      { id: 16, startTime: "11:00", endTime: "12:00" },
+    ],
   },
   {
     id: 5,
@@ -78,6 +103,12 @@ export default [
     latitude: "20.856026",
     longtitude: "106.688085",
     image: "https://i.imgur.com/JsNxV4r.jpeg",
+    timeslots: [
+      { id: 17, startTime: "08:00", endTime: "09:00" },
+      { id: 18, startTime: "09:00", endTime: "10:00" },
+      { id: 19, startTime: "10:00", endTime: "11:00" },
+      { id: 20, startTime: "11:00", endTime: "12:00" },
+    ],
   },
   {
     id: 6,
@@ -94,6 +125,12 @@ export default [
     latitude: "10.037367",
     longtitude: "105.786070",
     image: "https://i.imgur.com/JsNxV4r.jpeg",
+    timeslots: [
+      { id: 21, startTime: "08:00", endTime: "09:00" },
+      { id: 22, startTime: "09:00", endTime: "10:00" },
+      { id: 23, startTime: "10:00", endTime: "11:00" },
+      { id: 24, startTime: "11:00", endTime: "12:00" },
+    ],
   },
   {
     id: 7,
@@ -110,6 +147,12 @@ export default [
     latitude: "12.238791",
     longtitude: "109.196749",
     image: "https://i.imgur.com/JsNxV4r.jpeg",
+    timeslots: [
+      { id: 25, startTime: "08:00", endTime: "09:00" },
+      { id: 26, startTime: "09:00", endTime: "10:00" },
+      { id: 27, startTime: "10:00", endTime: "11:00" },
+      { id: 28, startTime: "11:00", endTime: "12:00" },
+    ],
   },
   {
     id: 8,
@@ -126,5 +169,11 @@ export default [
     latitude: "10.350852",
     longtitude: "107.084370",
     image: "https://i.imgur.com/JsNxV4r.jpeg",
+    timeslots: [
+      { id: 29, startTime: "08:00", endTime: "09:00" },
+      { id: 30, startTime: "09:00", endTime: "10:00" },
+      { id: 31, startTime: "10:00", endTime: "11:00" },
+      { id: 32, startTime: "11:00", endTime: "12:00" },
+    ],
   },
 ];

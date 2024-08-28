@@ -43,18 +43,17 @@ export default function CenterForm() {
       label: "Phường",
       value: center.ward,
     },
-    {
-      icon: <FaClock />,
-      label: "Thời gian ra mắt",
-      value: center.createdAt,
-    },
   ];
 
   return (
     <Container size="xl">
       <div className="flex gap-6 w-full p-3 bg-slate-100 rounded-2xl shadow-shadow-dropdown relative flex-col sm:flex-row sm:px-6 sm:py-4">
         <div className="flex gap-y-3 flex-col sm:min-w-[300px] sm:max-w-[300px] justify-between">
-          <Image src={center.image} />
+          <Image
+            src={center.image}
+            alt={center.courtCenterName}
+            fallbackSrc="https://i.imgur.com/JsNxV4r.jpeg"
+          />
           <div className="flex flex-row gap-x-3  gap-y-3 sm:flex-col">
             <Button
               component={Link}
@@ -64,9 +63,6 @@ export default function CenterForm() {
             >
               Cập nhật
             </Button>
-            {/* <Button className="py-[10px] flex-1" bg="red" leftSection={<AiFillDelete />}>
-              Xóa
-            </Button> */}
           </div>
         </div>
 
@@ -78,6 +74,21 @@ export default function CenterForm() {
                 {icon} {label}:<Text fw="600">{value}</Text>
               </div>
             ))}
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <FaClock /> Giờ làm việc:
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {center.timeslots.map((timeslot) => (
+                  <div
+                    key={timeslot.id}
+                    className="flex gap-2 rounded bg-slate-200 py-2 px-4 items-center"
+                  >
+                    {timeslot.startTime} - {timeslot.endTime}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

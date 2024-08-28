@@ -21,7 +21,6 @@ import {
   MdOutlineTrendingUp,
 } from "react-icons/md";
 import DoughnutChart from "../components/DoughnutChart";
-import { useGetDashboard } from "../api";
 
 import { Container, Table } from "@mantine/core";
 import CustomTable from "@/components/CustomTable";
@@ -48,7 +47,66 @@ const icons = [
 
 export default function Page() {
   // Get all reports
-  const { data } = useGetDashboard();
+  // const { data } = useGetDashboard();
+  const data = {
+    reports: [
+      {
+        title: "Tổng trung tâm",
+        total: 5,
+        isIncrease: true,
+        percentage: 25,
+      },
+      {
+        title: "Tổng sân",
+        total: 6,
+        isIncrease: false,
+        percentage: 10,
+      },
+      {
+        title: "Tổng lịch đặt",
+        total: 10,
+        isIncrease: true,
+        percentage: 50,
+      },
+      {
+        title: "Tổng doanh thu",
+        total: 1600,
+        isIncrease: false,
+        percentage: 5,
+      },
+    ],
+    top5Centers: [
+      {
+        id: 1,
+        courtCenterName: "Trung tâm Hà Nội",
+        province: "Hà Nội",
+      },
+      {
+        id: 2,
+        courtCenterName: "Trung tâm Đà Nẵng",
+        province: "Đà Nẵng",
+      },
+      {
+        id: 3,
+        courtCenterName: "Trung tâm Bình Dương",
+        province: "Bình Dương",
+      },
+      {
+        id: 4,
+        courtCenterName: "Trung tâm Hồ Chí Minh",
+        province: "Hồ Chí Minh",
+      },
+      {
+        id: 5,
+        courtCenterName: "Trung tâm Hải Phòng",
+        province: "Hải Phòng",
+      },
+    ],
+    countCourtByCenter: {
+      labels: ["Trung tâm Hà Nội", "Trung tâm Đà Nẵng", "Trung tâm Bình Dương"],
+      data: [5, 4, 8],
+    },
+  };
 
   const headers = ["STT", "Tên sân", "Địa chỉ"];
 

@@ -6,14 +6,18 @@ export default function CenterCard({ center }: { center: Center }) {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
-        <Image src={center.image} height={160} alt={center.courtCenterName} />
+        <Image
+          src={center.image}
+          height={160}
+          alt={center.courtCenterName}
+          fallbackSrc="https://i.imgur.com/JsNxV4r.jpeg"
+        />
       </Card.Section>
 
       <Group justify="space-between" mt="md" mb="xs">
         <Text mih="50px" fw={500}>
           {center.courtCenterName}
         </Text>
-        {/* <Badge color="pink">On Sale</Badge> */}
       </Group>
 
       <Text size="sm" c="dimmed" mih="50px">

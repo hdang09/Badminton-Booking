@@ -99,3 +99,7 @@ export const formatDateTime = (dateTime: string | undefined | Date) => {
 export const formatPhoneNumber = (phoneNumber: string): string => {
   return phoneNumber.replace(/(\d{4})(\d{3})(\d{3})/, '$1 $2 $3')
 }
+
+export const getRandomInt = (min = 6, max = 20) => {
+  return String(Math.floor(Math.random() * (max - min + 1)) + min).padStart(2, '0');
+}

@@ -13,7 +13,12 @@ export default function CourtCard({ court, centerId }: { court: Court; centerId:
       to={`/dashboard/center/${centerId}/court/${court.id}`}
     >
       <Card.Section>
-        <Image src={court.image} h={160} alt={court.courtName} />
+        <Image
+          src={court.image}
+          h={160}
+          alt={court.courtName}
+          fallbackSrc="https://i.imgur.com/JVHW6f0.jpeg"
+        />
       </Card.Section>
 
       <Text fw={500} size="lg" mt="md">

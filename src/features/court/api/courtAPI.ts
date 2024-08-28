@@ -55,7 +55,7 @@ export const useGetListCourt = (centerId: string) => {
 export const useGetCourt = (centerId: string, courtId: string) => {
     return useQuery({
         queryKey: ['court', centerId, courtId],
-        queryFn: () => getCourt(centerId, courtId),
+        queryFn: () => getListCourt(centerId).then(res => res.find(x => x.id.toString() === courtId)),
         enabled: !!centerId && !!courtId,
     });
 };
@@ -80,7 +80,7 @@ export const useCreateCourtMutation = (
 export const useUpdateCourtMutation = (
     handleFn: {
         onError?: (error: unknown, variables: CourtReq, context: unknown) => void;
-        onSuccess?: (data: Court, variables: CourtReq, context: unknown) => void;
+        onSuccess?: (data: CourtReq, variables: CourtReq, context: unknown) => void;
         onMutate?: (variables: CourtReq) => Promise<Court>;
     },
     retry?: number,
