@@ -1,5 +1,6 @@
 import Error from "@/components/Error";
 import ScrollToTop from "@/components/ScrollToTop";
+import Login from "@/features/auth/components";
 import { Booking } from "@/features/booking/routes";
 import { CreateCenter, ManageCenter, UpdateCenter, ViewCenter } from "@/features/center/routes";
 import { CreateCourt, UpdateCourt, ViewCourt } from "@/features/court/routes";
@@ -15,6 +16,7 @@ export default function AppRoute() {
       <ScrollToTop />
       <Routes>
         <Route path="/" index element={<Navigate to={"/login"} />} />
+        <Route path="/login" element={<Login />} />
         <Route path="dashboard" element={<DefaultLayout />}>
           <Route path="" index element={<Dashboard />} />
           <Route path="center">

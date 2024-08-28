@@ -7,6 +7,7 @@ import { Container, Modal, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
 import { formatDateTime, formatTime } from "@/libs/helper";
+import { useGetBooking } from "../api";
 
 interface Event {
   title: string;
@@ -18,28 +19,19 @@ export default function Booking() {
   // Modal
   const [opened, { open, close }] = useDisclosure(false);
 
-  const events: Event[] = [
-    { title: "Sân Vip 1", start: "2024-08-26T10:00:00", end: "2024-08-26T11:00:00" },
-    { title: "Sân Vip 2", start: "2024-08-27T13:30:00", end: "2024-08-27T15:00:00" },
-    { title: "Sân Vip 3", start: "2024-08-28T09:00:00", end: "2024-08-28T10:30:00" },
-    { title: "Sân Vip 4", start: "2024-08-29T14:00:00", end: "2024-08-29T16:00:00" },
-    { title: "Sân Vip 5", start: "2024-08-30T08:00:00", end: "2024-08-30T09:00:00" },
-    { title: "Sân Vip 6", start: "2024-08-31T17:00:00", end: "2024-08-31T18:00:00" },
-    { title: "Sân Vip 7", start: "2024-09-01T15:00:00", end: "2024-09-01T16:30:00" },
-  ];
+  const { data: events } = useGetBooking();
 
   // Current event
   const [currentEvent, setCurrentEvent] = useState<Event>();
 
-  console.log(currentEvent);
   const handleEventClick = (clickInfo: any) => {
     const clickedEvent: Event = {
       title: clickInfo.event.title,
       start: clickInfo.event.start?.toISOString() || "",
       end: clickInfo.event.end?.toISOString() || "",
     };
-    setCurrentEvent(clickedEvent);
 
+    setCurrentEvent(clickedEvent);
     open();
   };
 

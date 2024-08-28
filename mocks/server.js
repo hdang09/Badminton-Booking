@@ -239,7 +239,7 @@ export function makeServer({ environment = "test" } = {}) {
               id: 1,
               fullName: "Nguyễn Văn A",
               phone: "0123456789",
-              amount: 4250000,
+              amount: 425000,
               paymentType: "Chuyển khoản",
               createdAt: "2021-06-01",
             },
@@ -247,10 +247,75 @@ export function makeServer({ environment = "test" } = {}) {
               id: 2,
               fullName: "Nguyễn Văn B",
               phone: "0123456789",
-              amount: 4250000,
+              amount: 425000,
               paymentType: "Chuyển khoản",
               createdAt: "2021-06-01",
             },
+            {
+              id: 3,
+              fullName: "Nguyễn Văn C",
+              phone: "0123456789",
+              amount: 565000,
+              paymentType: "Chuyển khoản",
+              createdAt: "2021-06-01",
+            },
+            {
+              id: 4,
+              fullName: "Nguyễn Văn D",
+              phone: "0123456789",
+              amount: 425000,
+              paymentType: "Chuyển khoản",
+              createdAt: "2021-06-01",
+            },
+            {
+              id: 5,
+              fullName: "Nguyễn Văn E",
+              phone: "0123456789",
+              amount: 565000,
+              paymentType: "Chuyển khoản",
+              createdAt: "2021-06-01",
+            },
+            {
+              id: 6,
+              fullName: "Nguyễn Văn F",
+              phone: "0123456789",
+              amount: 425000,
+              paymentType: "Chuyển khoản",
+              createdAt: "2021-06-01",
+            },
+            {
+              id: 7,
+              fullName: "Nguyễn Văn G",
+              phone: "0123456789",
+              amount: 425000,
+              paymentType: "Chuyển khoản",
+              createdAt: "2021-06-01",
+            },
+            {
+              id: 8,
+              fullName: "Nguyễn Văn H",
+              phone: "0123456789",
+              amount: 565000,
+              paymentType: "Chuyển khoản",
+              createdAt: "2021-06-01",
+            },
+          ];
+        } catch (error) {
+          return new Response(401, {}, { message: "Unauthorized" });
+        }
+      });
+
+      // GET /badminton-booking/api/booking?ownerId=1&centerId=1
+      this.get("/badminton-booking/api/booking", (schema, request) => {
+        try {
+          return [
+            { title: "Sân Vip 1", start: "2024-08-26T10:00:00", end: "2024-08-26T11:00:00" },
+            { title: "Sân Vip 2", start: "2024-08-27T13:30:00", end: "2024-08-27T15:00:00" },
+            { title: "Sân Vip 3", start: "2024-08-28T09:00:00", end: "2024-08-28T10:30:00" },
+            { title: "Sân Vip 4", start: "2024-08-29T14:00:00", end: "2024-08-29T16:00:00" },
+            { title: "Sân Vip 5", start: "2024-08-30T08:00:00", end: "2024-08-30T09:00:00" },
+            { title: "Sân Vip 6", start: "2024-08-31T17:00:00", end: "2024-08-31T18:00:00" },
+            { title: "Sân Vip 7", start: "2024-09-01T15:00:00", end: "2024-09-01T16:30:00" },
           ];
         } catch (error) {
           return new Response(401, {}, { message: "Unauthorized" });

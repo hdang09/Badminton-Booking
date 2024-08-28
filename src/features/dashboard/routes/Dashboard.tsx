@@ -52,15 +52,14 @@ export default function Page() {
 
   const headers = ["STT", "Tên sân", "Địa chỉ"];
 
-  const rows = data?.top5Centers?.map((element) => (
-    <Table.Tr key={element.id}>
-      <Table.Td>{element.id}</Table.Td>
-      <Table.Td>{element.courtCenterName}</Table.Td>
-      <Table.Td>{element.province}</Table.Td>
-    </Table.Tr>
-  ));
-
-  console.log(rows);
+  const rows =
+    data?.top5Centers?.map((element) => (
+      <Table.Tr key={element.id}>
+        <Table.Td>{element.id}</Table.Td>
+        <Table.Td>{element.courtCenterName}</Table.Td>
+        <Table.Td>{element.province}</Table.Td>
+      </Table.Tr>
+    )) || [];
 
   return (
     <Container size="xl">

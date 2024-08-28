@@ -1,16 +1,28 @@
-import { TextInput, PasswordInput, Checkbox, Anchor, Title, Group, Button } from "@mantine/core";
-// import slider from '@/assets/img/sliderHome1.png';
+import {
+  TextInput,
+  PasswordInput,
+  Checkbox,
+  Anchor,
+  Paper,
+  Title,
+  Container,
+  Group,
+  Button,
+  BackgroundImage,
+} from "@mantine/core";
 import { useLoginMutation, LoginCredentials } from "@/features/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAuthStore } from "@/store/authStore";
+import { Navigate, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-export default function Login({ onLoginSuccess }: { onLoginSuccess: () => void }) {
-  const { setAccountType } = useAuthStore();
+export default function Login() {
+  const { accountType, setAccountType } = useAuthStore();
+  const navigate = useNavigate();
   const loginMutation = useLoginMutation({
     onSuccess: (data) => {
       setAccountType({ user: data.user });
-      onLoginSuccess();
+      navigate("/dashboard");
     },
     onError: () => {
       toast.error("Đăng nhập thất bại, vui lòng thử lại");
@@ -22,32 +34,44 @@ export default function Login({ onLoginSuccess }: { onLoginSuccess: () => void }
     loginMutation.mutate(data);
   };
   return (
-    <form className="pb-4 px-6" onSubmit={handleSubmit(onSubmit)}>
-      <Title ta="center" className="mb-4">
-        Chào mừng quay trở lại!
-      </Title>
-      <TextInput
-        {...register("username")}
-        label="Tên đăng nhập"
-        placeholder="Nhập tên đăng nhập"
-        required
-      />
-      <PasswordInput
-        {...register("password")}
-        label="Mật khẩu"
-        placeholder="Nhập mật khẩu"
-        required
-        mt="md"
-      />
-      <Group justify="space-between" mt="lg">
-        <Checkbox label="Remember me" />
-        <Anchor component="button" size="sm">
-          Forgot password?
-        </Anchor>
-      </Group>
-      <Button type="submit" fullWidth mt="xl" loading={loginMutation.isPending}>
-        Đăng nhập
-      </Button>
-    </form>
+    <>
+      {!accountType ? (
+        <BackgroundImage src={""} className="bg-slate-50" mih="100vh">
+          <Container classNames={{ root: "!mt-0 pt-20" }} size={420} my={40}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+                <Title ta="center" className="mb-4">
+                  Chào mừng quay trở lại!
+                </Title>
+                <TextInput
+                  {...register("username")}
+                  label="Tên đăng nhập"
+                  placeholder="Nhập tên đăng nhập"
+                  required
+                />
+                <PasswordInput
+                  {...register("password")}
+                  label="Password"
+                  placeholder="Nhập mật khẩu"
+                  required
+                  mt="md"
+                />
+                <Group justify="space-between" mt="lg">
+                  <Checkbox label="Ghi nhớ" />
+                  <Anchor component="button" size="sm">
+                    Quên mật khẩu?
+                  </Anchor>
+                </Group>
+                <Button type="submit" fullWidth mt="xl" loading={loginMutation.isPending}>
+                  Đăng nhập
+                </Button>
+              </Paper>
+            </form>
+          </Container>
+        </BackgroundImage>
+      ) : (
+        <Navigate to={"/dashboard"} />
+      )}
+    </>
   );
 }

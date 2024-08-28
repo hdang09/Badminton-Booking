@@ -78,14 +78,24 @@ export const numberToPrice = (num: number): string => {
   return formattedStr;
 };
 
-export const formatTime = (dateTime: string | undefined) => {
+export const formatTime = (dateTime: string | undefined | Date) => {
   if (!dateTime) return '';
 
   return dayjs(dateTime).format('HH:mm')
 }
 
-export const formatDateTime = (dateTime: string | undefined) => {
+export const formatDate = (dateTime: string | undefined | Date) => {
+  if (!dateTime) return '';
+
+  return dayjs(dateTime).format('DD/MM/YYYY')
+}
+
+export const formatDateTime = (dateTime: string | undefined | Date) => {
   if (!dateTime) return '';
 
   return dayjs(dateTime).format('DD/MM/YYYY HH:mm')
+}
+
+export const formatPhoneNumber = (phoneNumber: string): string => {
+  return phoneNumber.replace(/(\d{4})(\d{3})(\d{3})/, '$1 $2 $3')
 }
