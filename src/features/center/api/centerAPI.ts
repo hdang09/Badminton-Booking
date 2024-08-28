@@ -40,7 +40,7 @@ export const updateCenter = async (data: CenterReq): Promise<Center> => {
     }
 }
 
-export const useGetListCategory = () => {
+export const useGetListCenter = () => {
     return useQuery({
         queryKey: ['centers'],
         queryFn: () => getListCenter(),

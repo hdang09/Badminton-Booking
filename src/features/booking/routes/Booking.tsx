@@ -1,19 +1,12 @@
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import viLocale from "@fullcalendar/core/locales/vi";
 import { Container, Modal, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
-import { formatDateTime, formatTime } from "@/libs/helper";
+import { formatDateTime } from "@/libs/helper";
 import { useGetBooking } from "../api";
-
-interface Event {
-  title: string;
-  start: string;
-  end: string;
-}
+import { Event } from "../types";
+import { useGetListCenter } from "@/features/center/api";
+import Calendar from "../components/Calendar/Calendar";
+import Dropdown from "../components/Dropdown";
 
 export default function Booking() {
   // Modal
@@ -23,6 +16,8 @@ export default function Booking() {
 
   // Current event
   const [currentEvent, setCurrentEvent] = useState<Event>();
+
+  const { data: centers } = useGetListCenter();
 
   const handleEventClick = (clickInfo: any) => {
     const clickedEvent: Event = {
@@ -35,46 +30,24 @@ export default function Booking() {
     open();
   };
 
-  const renderEventContent = (eventInfo: any) => (
-    <div className="py-1 px-2 flex justify-center items flex-col">
-      <strong className="text-black">{eventInfo.event.title}</strong>
-      {eventInfo.event.end && (
-        <div className="text-xs text-black">
-          {formatTime(eventInfo.event.start)} - {formatTime(eventInfo.event.end)}
-        </div>
-      )}
-    </div>
-  );
-
   return (
     <>
-      <Container size="xl">
-        <Text size="lg" fw="700" className="text-2xl">
-          Quản lý đặt sân
-        </Text>
-        <div className="mt-12">
-          <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="timeGridWeek"
-            events={events}
-            eventClick={handleEventClick}
-            eventContent={renderEventContent}
-            locale={viLocale} // Set the locale to Vietnamese
-            headerToolbar={{
-              start: "prev,next today",
-              center: "title",
-              end: "dayGridMonth,timeGridWeek,timeGridDay",
-            }}
-            buttonText={{
-              today: "Hôm nay",
-              month: "Tháng",
-              week: "Tuần",
-              day: "Ngày",
-            }}
-            height="auto"
-            slotMinTime="06:00:00"
-            slotMaxTime="22:00:00"
-          />
+      <Container size="xl" className="mx-auto px-4">
+        <div className="sm:flex sm:items-center sm:justify-between">
+          <div>
+            <div className="flex items-center gap-x-3">
+              <h2 className="text-2xl font-bold text-gray-800">Quản lý đặt sân</h2>
+              <span className="rounded-full bg-green-100 px-3 py-1 text-xs text-secondary">
+                {events?.length} lịch đặt
+              </span>
+            </div>
+            <p className="mt-1 text-sm text-gray-500">Đây là những lịch đặt của các sân</p>
+          </div>
+          {centers && <Dropdown centers={centers} />}
+        </div>
+
+        <div className="mt-8 flex flex-col overflow-x-auto">
+          {events && <Calendar events={events} handleEventClick={handleEventClick} />}
         </div>
       </Container>
 

@@ -1,10 +1,10 @@
 import * as httpRequest from '@/libs/axios';
 import { useQuery } from '@tanstack/react-query';
-import { Booking } from '../types';
+import { Event } from '../types';
 
-const getBooking = async (): Promise<Booking[]> => {
+const getBooking = async (): Promise<Event[]> => {
     try {
-        const response: Booking[] = await httpRequest.get('/badminton-booking/api/booking');
+        const response: Event[] = await httpRequest.get('/badminton-booking/api/booking');
         return response;
     } catch (error: any) {
         throw new Error(error);

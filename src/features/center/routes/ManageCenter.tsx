@@ -1,13 +1,13 @@
 import { Text, Button, Grid, Container, Flex } from "@mantine/core";
 import { IoIosAdd } from "react-icons/io";
 
-import { useGetListCategory } from "../api";
+import { useGetListCenter } from "../api";
 import { Center } from "../types";
 import CenterCard from "../components/CenterCard";
 import { Link } from "react-router-dom";
 
 export default function ManageCenter() {
-  const { data: centers } = useGetListCategory();
+  const { data: centers } = useGetListCenter();
 
   return (
     <Container size="xl">
