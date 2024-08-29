@@ -48,12 +48,14 @@ export default function Login() {
                   {...register("username")}
                   label="Tên đăng nhập"
                   placeholder="Nhập tên đăng nhập"
+                  value="owner"
                   required
                 />
                 <PasswordInput
                   {...register("password")}
                   label="Password"
                   placeholder="Nhập mật khẩu"
+                  value="owner"
                   required
                   mt="md"
                 />
