@@ -86,8 +86,6 @@ export function makeServer({ environment = "test" } = {}) {
           );
           return res.json();
         } catch (error) {
-          console.log("error", error);
-
           return schema.centers.all().models;
         }
       });
@@ -113,8 +111,6 @@ export function makeServer({ environment = "test" } = {}) {
       this.post("/center", async (schema, request) => {
         let attrs = JSON.parse(request.requestBody);
         try {
-          console.log("1");
-
           const res = await fetch(`${API_URL}/api/center`, {
             method: "POST",
             body: JSON.stringify(attrs),
@@ -124,8 +120,6 @@ export function makeServer({ environment = "test" } = {}) {
           });
           return res.json();
         } catch (error) {
-          console.log("2");
-
           let newCenter = schema.centers.create(attrs);
           return newCenter;
         }

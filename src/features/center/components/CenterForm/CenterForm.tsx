@@ -5,6 +5,9 @@ import { useCreateCenterMutation, useGetCenter, useUpdateCenterMutation } from "
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { CenterFormProps } from "../../types";
+import { AutocompleteAddress } from "@/features/map/components";
+import { useSearchLocationStore } from "@/store/componentStore";
+import { usePlaceDetailMutation } from "@/features/map/api";
 
 function CenterForm() {
   const navigate = useNavigate();
@@ -24,12 +27,6 @@ function CenterForm() {
 
     validate: {
       courtCenterName: (value) => (value ? null : "Tên trung tâm sân là bắt buộc"),
-      address: (value) => (value ? null : "Địa chỉ là bắt buộc"),
-      latitude: (value) => (value ? null : "Vĩ độ là bắt buộc"),
-      longtitude: (value) => (value ? null : "Kinh độ là bắt buộc"),
-      province: (value) => (value ? null : "Tỉnh là bắt buộc"),
-      district: (value) => (value ? null : "Quận/Huyện là bắt buộc"),
-      ward: (value) => (value ? null : "Phường/Xã là bắt buộc"),
     },
   });
 
@@ -61,12 +58,34 @@ function CenterForm() {
     },
   });
 
-  const handleSubmit = (values: CenterFormProps) => {
+  const { sessionToken, placeChoose, setSessionToken, setPlaceDetail } = useSearchLocationStore();
+
+  const placeDetailMutation = usePlaceDetailMutation({
+    onSuccess: (data) => {
+      setPlaceDetail(data);
+      setSessionToken();
+    },
+  });
+
+  const handleSubmit = async (values: CenterFormProps) => {
     const courtOwnerId = localStorage.getItem("ownerId") ?? "1";
-    const newValues = {
-      ...values,
-      courtOwnerId: Number.parseInt(courtOwnerId),
-    };
+    let newValues = { ...values, courtOwnerId: Number.parseInt(courtOwnerId) };
+
+    if (placeChoose && placeChoose.place_id) {
+      const placDetail = await placeDetailMutation.mutateAsync({
+        placeId: placeChoose.place_id!,
+        sessionToken: sessionToken,
+      });
+      if (placDetail && placDetail.geometry) {
+        newValues.latitude = placDetail.geometry.location.lat.toString();
+        newValues.longtitude = placDetail.geometry.location.lng.toString();
+        newValues.address = placeChoose.description ?? "";
+        setSessionToken();
+      } else {
+        toast.error("Có lỗi xảy ra khi thay đổi địa chỉ, vui lòng thử lại sau");
+        return;
+      }
+    }
 
     if (centerId) {
       updateCenterMutation.mutate(newValues);
@@ -77,7 +96,7 @@ function CenterForm() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-slate-50 rounded-lg shadow-lg">
+    <div className="max-w-3xl mx-auto p-6 bg-slate-50 rounded-lg shadow-lg">
       <Text fw={700} size="xl" c="green" className="text-2xl mb-6">
         {centerId ? "Cập nhật trung tâm" : "Tạo trung tâm"}
       </Text>
@@ -101,20 +120,25 @@ function CenterForm() {
           <label className="text-gray-700 mb-2" htmlFor="address">
             Địa chỉ
           </label>
-          <TextInput
+          {/* <TextInput
             id="address"
+            disabled={!!centerId}
             placeholder="Nhập địa chỉ"
             {...form.getInputProps("address")}
             className="border border-gray-300 rounded-lg p-2"
-          />
+          /> */}
+          <div className="border-solid border-2 border-gray-200 p-2 rounded-lg">
+            <AutocompleteAddress defaultValue={center?.address} disabled={!!centerId} />
+          </div>
         </div>
 
-        <div className="flex flex-col">
+        {/* <div className="flex flex-col">
           <label className="text-gray-700 mb-2" htmlFor="latitude">
             Vĩ độ
           </label>
           <TextInput
             id="latitude"
+            disabled={!!centerId}
             placeholder="Nhập vĩ độ"
             {...form.getInputProps("latitude")}
             className="border border-gray-300 rounded-lg p-2"
@@ -127,11 +151,12 @@ function CenterForm() {
           </label>
           <TextInput
             id="longtitude"
+            disabled={!!centerId}
             placeholder="Nhập kinh độ"
             {...form.getInputProps("longtitude")}
             className="border border-gray-300 rounded-lg p-2"
           />
-        </div>
+        </div> */}
 
         <div className="flex flex-col">
           <label className="text-gray-700 mb-2" htmlFor="province">
@@ -139,6 +164,7 @@ function CenterForm() {
           </label>
           <TextInput
             id="province"
+            disabled={!!centerId}
             placeholder="Nhập tỉnh"
             {...form.getInputProps("province")}
             className="border border-gray-300 rounded-lg p-2"
@@ -152,6 +178,7 @@ function CenterForm() {
           <TextInput
             id="district"
             placeholder="Nhập quận/huyện"
+            disabled={!!centerId}
             {...form.getInputProps("district")}
             className="border border-gray-300 rounded-lg p-2"
           />
@@ -164,6 +191,7 @@ function CenterForm() {
           <TextInput
             id="ward"
             placeholder="Nhập phường/xã"
+            disabled={!!centerId}
             {...form.getInputProps("ward")}
             className="border border-gray-300 rounded-lg p-2"
           />

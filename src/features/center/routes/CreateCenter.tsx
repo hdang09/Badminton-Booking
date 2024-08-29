@@ -3,7 +3,7 @@ import CenterForm from "../components/CenterForm";
 
 export default function CreateCenter() {
   return (
-    <Container>
+    <Container size="xl">
       <CenterForm />
     </Container>
   );

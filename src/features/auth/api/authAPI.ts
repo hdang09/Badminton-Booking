@@ -1,16 +1,18 @@
 import * as httpRequest from "@/libs/axios";
 import * as httpAuth from "@/libs/axios-auth";
 import { ILogin, ILogout, ISession, ISessionUser, LoginCredentials } from "../types";
-import { IUser, getUser } from "@/features/users";
+// import { IUser, getUser } from "@/features/users";
 import { useMutation } from "@tanstack/react-query";
 import Cookies from 'js-cookie';
 
 const login = async (credentials: LoginCredentials): Promise<ILogin> => {
   try {
-    const resLogin: { token: string } = await httpRequest.post("/auth/sign-in", credentials);
+    console.log("credentials", credentials);
+    const resLogin = await httpRequest.post("/auth/sign-in", credentials);
+
     localStorage.setItem("token", resLogin.token);
-    const resUser: IUser = await getUser();
-    return { token: resLogin.token, user: resUser };
+    // const resUser: IUser = await getUser();
+    return { token: resLogin.token };
   } catch (e: any) {
     // throw new Error(e);
     return { token: "" };
@@ -20,9 +22,9 @@ const login = async (credentials: LoginCredentials): Promise<ILogin> => {
 const getSessionUser = async (): Promise<ISessionUser> => {
   try {
     const resSession: ISession = await httpAuth.get("/auth/session");
-    const resUser: IUser = await getUser();
+    // const resUser: IUser = await getUser();
     sessionStorage.setItem("badminton-session", resSession.sessionId);
-    return { session: resSession, user: resUser };
+    return { session: resSession };
   } catch (e: any) {
     return { session: { userId: "", roleId: "", sessionId: "" } };
     // throw new Error(e.error);

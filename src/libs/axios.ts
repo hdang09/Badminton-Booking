@@ -10,6 +10,14 @@ export const sleep = (ms = 500): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
+httpRequest.interceptors.request.use(async (value) => {
+  // const storage = localStorage.getItem("user");
+  // const user = storage ? JSON.parse(storage) : null;
+  // value.headers["token"] = user.token ?? "";
+  value.headers["token"] = `${localStorage.getItem("token")}`;
+  return value;
+});
+
 httpRequest.interceptors.response.use(undefined, async (error: AxiosError) => {
   if (error.response) {
     if (error.response.status === 401) {

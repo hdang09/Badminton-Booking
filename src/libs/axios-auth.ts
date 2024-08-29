@@ -11,6 +11,9 @@ export const sleep = (ms = 100000): Promise<void> => {
 
 httpRequest.interceptors.request.use(async (value) => {
   value.headers["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
+  // const storage = localStorage.getItem("user");
+  // const user = storage ? JSON.parse(storage) : null;
+  // value.headers["token"] = user.token ?? "";
   return value;
 });
 

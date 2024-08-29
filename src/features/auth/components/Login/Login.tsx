@@ -31,6 +31,7 @@ export default function Login() {
   const { handleSubmit, register } = useForm<LoginCredentials>();
 
   const onSubmit: SubmitHandler<LoginCredentials> = async (data) => {
+    console.log(data);
     loginMutation.mutate(data);
   };
   return (

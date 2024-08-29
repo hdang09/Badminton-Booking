@@ -3,9 +3,9 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { Center, CenterReq } from '../types';
 
 const getListCenter = async (): Promise<Center[]> => {
-    const ownerId = localStorage.getItem('ownerId') ?? "1"
+    const ownerId = localStorage.getItem('ownerId') ?? "2"
     try {
-        const response: Center[] = await httpRequest.get(`/center/owner?ownerId=${ownerId}`);
+        const response: Center[] = await httpRequest.get(`/center/owner?ownerId=${ownerId}&pageNumber=1&size=1000`);
         return response;
     } catch (error: any) {
         throw new Error(error);

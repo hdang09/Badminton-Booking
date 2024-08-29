@@ -1,17 +1,18 @@
 import { ILogout } from "@/features/auth/types";
 
-export interface IUpdateUser extends ILogout {}
+export interface IUpdateUser extends ILogout { }
 
 export interface IUser {
-  id: string;
+  phone: number;
   email: string;
-  fullName: string;
-  phone: string;
-  address: string | null;
-  avatar: string | null;
-  birthday: string | null;
-  roleId: number;
-  status: number;
+  isActive: boolean;
+  gender: string;
+  dob: string;
+  name: string;
+  role: string;
+  token: string;
+  active: boolean;
+  id: number;
 }
 
 export interface UserCredentials {
